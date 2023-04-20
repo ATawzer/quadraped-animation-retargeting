@@ -28,14 +28,14 @@ class QAR_PT_Panel(bpy.types.Panel):
         layout = self.layout
 
         # QAR Settings
-        QAR_settings_box = layout.box()
-        QAR_settings_box.label(text="QAR Settings")
-        QAR_settings_box.prop(context.scene.QAR_settings, "armature_name")
-        QAR_settings_box.prop(context.scene.QAR_settings, "chest_bone")
-        QAR_settings_box.prop(context.scene.QAR_settings, "neck_bone")
-        QAR_settings_box.prop(context.scene.QAR_settings, "head_bone")
-        QAR_settings_box.prop(context.scene.QAR_settings, "foot_prefix")
-        QAR_settings_box.prop(context.scene.QAR_settings, "back_foot_prefix")
+        qar_settings_box = layout.box()
+        qar_settings_box.label(text="Rig Settings")
+        qar_settings_box.prop(context.scene.qar_settings, "armature_name")
+        qar_settings_box.prop(context.scene.qar_settings, "chest_bone")
+        qar_settings_box.prop(context.scene.qar_settings, "neck_bone")
+        qar_settings_box.prop(context.scene.qar_settings, "head_bone")
+        qar_settings_box.prop(context.scene.qar_settings, "foot_prefix")
+        qar_settings_box.prop(context.scene.qar_settings, "back_foot_prefix")
 
         # Turn Circles
         turn_circle_box = layout.box()
@@ -48,7 +48,7 @@ class QAR_PT_Panel(bpy.types.Panel):
 def register():
 
     bpy.utils.register_class(QARSettings)
-    bpy.types.Scene.QAR_settings = bpy.props.PointerProperty(type=QARSettings)
+    bpy.types.Scene.qar_settings = bpy.props.PointerProperty(type=QARSettings)
 
     turn_circle_register()
     foot_controller_register()
@@ -61,7 +61,7 @@ def unregister():
 
     bpy.utils.unregister_class(QAR_PT_Panel)
 
-    del bpy.types.Scene.QAR_settings
+    del bpy.types.Scene.qar_settings
     bpy.utils.unregister_class(QARSettings)
 
 if __name__ == "__main__":
