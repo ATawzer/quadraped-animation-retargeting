@@ -10,4 +10,4 @@ A set of tools relying on Blender's Rigify plugin that extend the functionality 
 - Easy Select of bone groups: Makes it less tedious to select all feet or other commonly need bone groups
 
 # Setup
-Download the quadraped-retargeting directory repository as a zip file. Install to blender like a normal plugin (Edit->Preferences->Add-ons, Install the .zip file)
+Download the qar directory repository as a zip file. Install to blender like a normal plugin (Edit->Preferences->Add-ons, Install the .zip file)
