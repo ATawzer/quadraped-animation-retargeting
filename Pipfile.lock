@@ -1,11 +1,11 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "eb93af7873beb2803bd7ae4a4b6746044ab8acd8fc78eac7231cc70d6119a4e7"
+            "sha256": "f42d4d41b44b133db0aafb184a716da30b80959862a8e0c85cec9e8b4431f15d"
         },
         "pipfile-spec": 6,
         "requires": {
-            "python_version": "3.10"
+            "python_version": "3.9"
         },
         "sources": [
             {
@@ -17,14 +17,6 @@
     },
     "default": {},
     "develop": {
-        "colorama": {
-            "hashes": [
-                "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44",
-                "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"
-            ],
-            "markers": "sys_platform == 'win32'",
-            "version": "==0.4.6"
-        },
         "coverage": {
             "extras": [
                 "toml"
