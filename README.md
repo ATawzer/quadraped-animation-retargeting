@@ -1,4 +1,4 @@
-# Quadraped Retargeting Tools for Blender's Rigify
+# Quadraped Animation Retargeting (QAR) Tools for Blender's Rigify
 A set of tools relying on Blender's Rigify plugin that extend the functionality to make many specific tasks for game animation much easier, specifically on quadrapeds.
 
 ## Key Features
