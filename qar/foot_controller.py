@@ -10,12 +10,12 @@ def draw(layout, context):
     if settings.foot_controller_settings_expanded:
 
         col = layout.column(align=True)
-        col.label(text="Stride Scaling Options:")
+        col.label(text="Stride Length Options:")
         col.prop(settings, "front_scale_factor")
         col.prop(settings, "hind_scale_factor")
 
         col = layout.column(align=True)
-        col.label(text="Stride Translation Options:")
+        col.label(text="Stride Positioning Options:")
         col.prop(settings, "front_translation_amount")
         col.prop(settings, "hind_translation_amount")
 
@@ -29,15 +29,15 @@ class OBJECT_OT_scale_and_translate_keyframes(bpy.types.Operator):
     bl_idname = "object.scale_and_translate_keyframes"
 
     def execute(self, context):
-        front_foot_bone_names = [f"{context.scene.arte_settings.foot_prefix}.R", 
-                                 f"{context.scene.arte_settings.foot_prefix}.L"]
-        hind_foot_bone_names = [f"{context.scene.arte_settings.back_foot_prefix}.R", 
-                                f"{context.scene.arte_settings.back_foot_prefix}.L"]
+        front_foot_bone_names = [f"{context.scene.qar_settings.foot_prefix}.R", 
+                                 f"{context.scene.qar_settings.foot_prefix}.L"]
+        hind_foot_bone_names = [f"{context.scene.qar_settings.back_foot_prefix}.R", 
+                                f"{context.scene.qar_settings.back_foot_prefix}.L"]
         front_scale_factor = context.scene.foot_controller_settings.front_scale_factor
         front_translation_amount = context.scene.foot_controller_settings.front_translation_amount
         hind_scale_factor = context.scene.foot_controller_settings.hind_scale_factor
         hind_translation_amount = context.scene.foot_controller_settings.hind_translation_amount
-        armature_name = context.scene.arte_settings.armature_name
+        armature_name = context.scene.qar_settings.armature_name
 
         # Scale and translate front foot keyframes
         scale_and_translate_keyframes(
@@ -55,6 +55,8 @@ class OBJECT_OT_scale_and_translate_keyframes(bpy.types.Operator):
             armature_name
         )
 
+        reset_options(context)
+        
         return {'FINISHED'}
     
 class OBJECT_OT_reset_scale_and_translate_values(bpy.types.Operator):
@@ -62,11 +64,14 @@ class OBJECT_OT_reset_scale_and_translate_values(bpy.types.Operator):
     bl_idname = "object.reset_scale_and_translate_values"
 
     def execute(self, context):
-        context.scene.foot_controller_settings.front_scale_factor = 1.0
-        context.scene.foot_controller_settings.front_translation_amount = 0.0
-        context.scene.foot_controller_settings.hind_scale_factor = 1.0
-        context.scene.foot_controller_settings.hind_translation_amount = 0.0
+        reset_options(context)
         return {'FINISHED'}
+
+def reset_options(context):
+    context.scene.foot_controller_settings.front_scale_factor = 1.0
+    context.scene.foot_controller_settings.front_translation_amount = 0.0
+    context.scene.foot_controller_settings.hind_scale_factor = 1.0
+    context.scene.foot_controller_settings.hind_translation_amount = 0.0
 
 def scale_and_translate_keyframes(bone_names, scale_factor, translation_amount, armature_name):
     armature_obj = bpy.data.objects[armature_name]

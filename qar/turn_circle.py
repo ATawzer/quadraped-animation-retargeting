@@ -21,16 +21,16 @@ class TurnCircleOperator(bpy.types.Operator):
     def execute(self, context):
         
         # Housekeeping
-        self.armature_obj = bpy.data.objects[context.scene.arte_settings.armature_name]
+        self.armature_obj = bpy.data.objects[context.scene.qar_settings.armature_name]
         self.source_action_name = context.object.animation_data.action.name
         self.turn_angle = context.scene.turn_circle_settings.turn_angle
-        self.foot_prefix = context.scene.arte_settings.foot_prefix
+        self.foot_prefix = context.scene.qar_settings.foot_prefix
         self.turn_bones = [
-            context.scene.arte_settings.chest_bone,
-            context.scene.arte_settings.neck_bone,
-            context.scene.arte_settings.head_bone,
-            f"{context.scene.arte_settings.foot_prefix}.R",
-            f"{context.scene.arte_settings.foot_prefix}.L",
+            context.scene.qar_settings.chest_bone,
+            context.scene.qar_settings.neck_bone,
+            context.scene.qar_settings.head_bone,
+            f"{context.scene.qar_settings.foot_prefix}.R",
+            f"{context.scene.qar_settings.foot_prefix}.L",
         ]
 
         # How much to modify each one
@@ -38,8 +38,8 @@ class TurnCircleOperator(bpy.types.Operator):
             'chest': context.scene.turn_circle_settings.chest_rotation_multiplier,
             'neck': context.scene.turn_circle_settings.neck_rotation_multiplier,
             'head': context.scene.turn_circle_settings.head_rotation_multiplier,
-            f"{context.scene.arte_settings.foot_prefix}.R": context.scene.turn_circle_settings.foot_rotation_multiplier,
-            f"{context.scene.arte_settings.foot_prefix}.L": context.scene.turn_circle_settings.foot_rotation_multiplier,
+            f"{context.scene.qar_settings.foot_prefix}.R": context.scene.turn_circle_settings.foot_rotation_multiplier,
+            f"{context.scene.qar_settings.foot_prefix}.L": context.scene.turn_circle_settings.foot_rotation_multiplier,
         }
 
         # Whether we want to move the feet as well
@@ -186,7 +186,7 @@ class TurnCircleOperator(bpy.types.Operator):
                 y_key.handle_right.y = sin_turn * x_key.handle_right.y + cos_turn * y_key.handle_right.y
 
 ######################
-### ARTE Functions ###
+### qar Functions ###
 ######################
 def draw(layout, context):
     settings = context.scene.turn_circle_settings
